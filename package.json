@@ -1,0 +1,32 @@
+{
+  "name": "19mob-node",
+  "version": "1.0.0",
+  "description": "API em Node na aula da turma 19mob",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelcaldastx/19mob-node.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "firebase",
+    "19mob"
+  ],
+  "author": "Rafael Caldas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelcaldastx/19mob-node/issues"
+  },
+  "homepage": "https://github.com/rafaelcaldastx/19mob-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "firebase": "^7.14.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.3"
+  }
+}
