@@ -23,6 +23,7 @@ class Users extends BaseModel {
         return db.get();
     }
 
+    add(user) { return this.db.collection('users').add(user); }
 
 }
 

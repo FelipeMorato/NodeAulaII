@@ -21,8 +21,19 @@ class Users {
         //res.send(`Eu recebi o parametro ${req.params.id}`);
     }
 
-    create(res, req) {
-        
+    add(req, res) {
+
+        usersModel.add(req.body)
+            .then(userResult => {
+
+                res.status(201).json({ ...req.body, id: userResult.id });
+            })
+            .catch(error => {
+
+                console.log(error);
+                res.sendStatus(500);
+            });
+
     }
 }
 
