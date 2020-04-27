@@ -8,6 +8,6 @@ const authController = new Auth();
 // * instancia do router
 const router = express.Router();
 
-router.post('/', verifyToken, authController.validate);
+router.post('/', authController.validate);
 
 module.exports = router;

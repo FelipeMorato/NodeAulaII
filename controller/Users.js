@@ -1,5 +1,6 @@
 const UsersModel = require('../model/Users');
 const usersModel = new UsersModel();
+const cryptoPassword = require('../utils/cryptoPassword');
 class Users {
     get(req, res) {
         const { id } = req.params;
@@ -9,31 +10,36 @@ class Users {
                 if (!user.exists) {
                     res.status(404).send({message: 'User not found'});
                 }
-
-                //console.log(user);
+                
                 res.json(user.data());
             })
             .catch((error) => {
-                //console.error(error);
                 res.status(500).send(error);                
             })
-
-        //res.send(`Eu recebi o parametro ${req.params.id}`);
     }
 
     add(req, res) {
 
-        usersModel.add(req.body)
-            .then(userResult => {
+        const useData = {
+            ...req.body, 
+            password: cryptoPassword(req.body.password)
+        } 
 
-                res.status(201).json({ ...req.body, id: userResult.id });
+        usersModel.add(useData)
+            .then((userResult) => {
+
+                delete useData.password;
+
+                res.status(201).json({ 
+                    ...useData, 
+                    id: userResult.id 
+                });
             })
             .catch(error => {
 
                 console.log(error);
                 res.sendStatus(500);
             });
-
     }
 }
 
