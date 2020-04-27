@@ -9,5 +9,6 @@ const usersController = new Users();
 const router = express.Router();
 
 router.get('/:id', usersController.get);
+router.post('/', usersController.add)
 
 module.exports = router;
