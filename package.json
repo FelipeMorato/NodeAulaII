@@ -4,8 +4,9 @@
   "description": "Aula node II",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "jest --coverage --runInBand --detectOpenHandles",
+    "test:watch": "jest --watch --runInBand --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -16,17 +17,21 @@
     "firebase",
     "19mob"
   ],
-  "author": "Rafael Caldas",
+  "author": "Felipe Morato",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rafaelcaldastx/19mob-node/issues"
+    "url": "https://github.com/FelipeMorato/NodeAulaII/issues"
   },
-  "homepage": "https://github.com/rafaelcaldastx/19mob-node#readme",
+  "homepage": "https://github.com/FelipeMorato/NodeAulaII/#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "firebase": "^7.14.1",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.3"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0",
+    "supertest": "^4.0.2"
   }
 }
