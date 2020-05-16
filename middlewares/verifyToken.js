@@ -14,6 +14,7 @@ const verifyToken = (req, res, next) => {
     }
 
     jwt.verify(token, secret, (error, decode) => {
+       
         if (error) {
             let descError = { erro:'' }
             switch (error.name) {

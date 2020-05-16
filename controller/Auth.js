@@ -5,12 +5,13 @@ const cryptoPassword = require('../utils/cryptoPassword');
 
 class Auth {
     validate(req, res) {
+
         const { email,password } = req.body;
 
         const conditions = [
             { field: 'email', operator: '==', value: email },
             { field: 'password', operator: '==', value: cryptoPassword(password) }
-        ]
+        ]       
 
         usersModel.getBy(conditions)
         .then((user) => {
@@ -30,7 +31,7 @@ class Auth {
             res.send({ token: createToken({ id: user.docs[0].id }) })
         })
         .catch((error) => {            
-            res.status(500).send("Usuário ou senha incorreto.");
+            res.status(500).send({messagem:"Usuário ou senha incorreto."});
         })
     }
 }

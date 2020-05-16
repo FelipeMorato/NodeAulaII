@@ -3,6 +3,7 @@ const usersModel = new UsersModel();
 const cryptoPassword = require('../utils/cryptoPassword');
 class Users {
     get(req, res) {
+
         const { id } = req.params;
 
         usersModel.get(id)
@@ -10,10 +11,9 @@ class Users {
                 if (!user.exists) {
                     res.status(404).send({message: 'User not found'});
                 }
-                
                 res.json(user.data());
             })
-            .catch((error) => {               
+            .catch((error) => {
                 res.status(500).send("Um erro aconteceu, tente mais tarde novamente");                
             })
     }
