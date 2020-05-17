@@ -9,25 +9,18 @@ const verifyToken = (req, res, next) => {
                 .status(401)
                 .send({
                     code: 'not_authorized',
-                    message: 'Não Autorizado'
+                    message: 'Not Authorized'
                 });                
     }
 
     jwt.verify(token, secret, (error, decode) => {
-       
         if (error) {
-            let descError = { erro:'' }
-            switch (error.name) {
-                case 'JsonWebTokenError':
-                    descError.erro = "Token inválido";
-                    break;
-                default:
-                    descError.erro  = "Erro genérico";
-            }
             return res  
                     .status(500)
-                    .send(descError);
+                    .send({error});
         }
+
+        console.log('token_decode: ', decode);
         next();
     });
 }

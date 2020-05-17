@@ -8,7 +8,7 @@ const usersController = new Users();
 // * instancia do router
 const router = express.Router();
 
-router.get('/:id',verifyToken, usersController.get);
-router.post('/',verifyToken, usersController.add)
+router.get('/:id', usersController.get);
+router.post('/', usersController.add)
 
 module.exports = router;
