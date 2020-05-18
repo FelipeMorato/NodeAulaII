@@ -1,42 +1,37 @@
 const ProdutosModel = require('../model/Produtos.js');
 const produtosModel = new ProdutosModel();
 
-const cryptoPassword = require('../utils/cryptoPassword');
-
 class Produtos {
     get(req, res) {
         const { id } = req.params;
 
         produtosModel.get(id)
-            .then((user) => {
-                if (!user.exists) {
-                    res.status(404).send({ message: 'User not found' });
+            .then((produto) => {
+                if (!produto.exists) {
+                    res.status(404).send({ message: 'Product not found' });
                 }
 
-                res.json(user.data());
+                res.json(produto.data());
             })
             .catch((error) => {
-                res.status(500).send(error);
+                res.status(500).send({menssagem:'Não foi possível realizar a requisição.'});
             });
     }
 
     add(req, res) {
         const data = {
-            ...req.body,
-            password: cryptoPassword(req.body.password),
+            ...req.body,            
         }
         
         produtosModel.create(data)
-            .then((user) => {
-                delete data.password;
-
+            .then((productResult) => {                
                 res.status(201).json({
                     ...data,
-                    id: user.id,
+                    id: productResult.id,
                 })
             })
             .catch((error) => {
-                res.status(500).send(error);
+                res.status(500).send({menssgem: 'Não foi possível cadastrar o produto.'});
             });
     }
 }
